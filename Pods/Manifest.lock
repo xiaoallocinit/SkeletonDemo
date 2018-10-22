@@ -1,0 +1,20 @@
+PODS:
+  - SkeletonView (1.4)
+  - SnapKit (4.0.1)
+
+DEPENDENCIES:
+  - SkeletonView
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SkeletonView
+    - SnapKit
+
+SPEC CHECKSUMS:
+  SkeletonView: 50f7a9b04e3a62bd0ae964859c19317fabaea367
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+
+PODFILE CHECKSUM: c91536ec4d1c2bd9acd0f7c5e59619470ac23bcf
+
+COCOAPODS: 1.5.3
