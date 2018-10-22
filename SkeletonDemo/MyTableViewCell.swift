@@ -12,6 +12,8 @@ class MyTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+         isSkeletonable = true//
+       
         self.createUI()
     }
    
@@ -45,9 +47,10 @@ class MyTableViewCell: UITableViewCell {
         return label
     }()
   private func createUI(){
-    self.addSubview(userAvatar)
-    self.addSubview(userIDLabel)
-    self.addSubview(userLabel)
+    
+    contentView.addSubview(userAvatar)
+    contentView.addSubview(userIDLabel)
+    contentView.addSubview(userLabel)
     userAvatar.snp.makeConstraints { (make) in
         make.top.equalTo(38)
         make.left.equalTo(15)

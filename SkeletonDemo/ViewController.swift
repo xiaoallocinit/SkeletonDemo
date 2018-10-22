@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SkeletonView
 
-class ViewController: UIViewController ,SkeletonTableViewDelegate, SkeletonTableViewDataSource{
+class ViewController: UIViewController {
     lazy  var table:UITableView = {
         
         let tableView = UITableView.init(frame:.zero, style: UITableView.Style.grouped)
@@ -31,15 +31,16 @@ class ViewController: UIViewController ,SkeletonTableViewDelegate, SkeletonTable
         tableView.backgroundColor = .clear
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: "MyTableViewCell")
         tableView.isSkeletonable = true
+         //tableView.showAnimatedGradientSkeleton()
+      
         return tableView
         
     }();
     //头部视图
-    fileprivate  var header = HeadView.init(frame: CGRect(x:0,y:0,width:UIScreen.main.bounds.size.width,height:160))
+    fileprivate  var header = HeadView.init(frame: CGRect(x:0,y:0,width:UIScreen.main.bounds.size.width,height:200))
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //self.view.showAnimatedSkeleton()
-        //self.table.showAnimatedGradientSkeleton()
+        self.table.showAnimatedGradientSkeleton()
         self.header.showAnimatedGradientSkeleton()
     }
     override func viewDidLoad() {
@@ -51,11 +52,17 @@ class ViewController: UIViewController ,SkeletonTableViewDelegate, SkeletonTable
         self.table.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-           //self.table.hideSkeleton()
+        
+       
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+           self.table.hideSkeleton()
             self.header.hideSkeleton()
         }
     }
+    
+}
+// MARK: - UITableViewDataSource
+extension ViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "MyTableViewCell"
     }
@@ -64,12 +71,13 @@ class ViewController: UIViewController ,SkeletonTableViewDelegate, SkeletonTable
         return 10
     }
 }
-
 // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell") as! MyTableViewCell
         cell.selectionStyle = .none
+        
+        
         return cell
     }
     
